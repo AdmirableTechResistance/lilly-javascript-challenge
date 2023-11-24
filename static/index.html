@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lilly JS recruitment task</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div>
-    <span class="spinner"></span>
-</div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lilly JS recruitment task</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div>
+            <span class="spinner"></span>
+        </div>
+        
+        <div id="chart-container">
+            <canvas id="chart" width="1000" height="650"></canvas>
 
-<canvas id="chart" width="1000" height="600"></canvas>
+            <div id="chart-legend">
+                <ul>
+                    <li id="MSFT">MSFT</li>
+                    <li id="AAPL">AAPL</li>
+                    <li id="FB">FB</li>
+                    <li id="IBM">IBM</li>
+                    <li id="EA">EA</li>
+                </ul>
+            </div>
+        </div>
 
-<script src="scripts.js" defer></script>
-</body>
+        <script src="scripts.js" defer></script>
+    </body>
 </html>

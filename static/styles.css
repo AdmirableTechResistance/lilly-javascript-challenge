@@ -1,10 +1,64 @@
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
 .spinner{
+  display: inline-block;
+  animation: spin 2s infinite linear;
   font-size: 140px;
 }
-.spinner:after {
-  content: '◌';
+
+.spinner:after{
+  content:'◌'
 }
 
 #chart {
-    border: 1px solid black;
+  border: 1px solid black;
+}
+
+#chart-container {
+  width: 1000px;
+  height: 650px;
+  position: absolute;
+}
+
+#chart-legend {
+  display: none;
+  justify-content: center;
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  top: 590px;
+  left: 40px;
+  width: 100%;
+}
+
+ul {
+  list-style-type: square;
+}
+
+li {
+  float: left;
+  padding: 0 50px 0 0;
+}
+
+#MSFT {
+  color: green;
+}
+
+#AAPL {
+  color: red;
+}
+
+#FB {
+  color: blue;
+}
+
+#IBM {
+  color: black;
+}
+
+#EA {
+  color: purple;
 }

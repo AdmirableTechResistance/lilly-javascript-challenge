@@ -11,9 +11,13 @@ app.get('/stocks', async (req, res) => {
 })
 
 app.get('/stocks/:symbol', async (req, res) => {
-  const { params: { symbol } } = req
-  const data = await stocks.getStockPoints(symbol, new Date())
-  res.send(data)
+  try {
+    const { params: { symbol } } = req
+    const data = await stocks.getStockPoints(symbol, new Date())
+    res.send(data)
+  } catch (error) {
+    res.status(500).send({error: 'Failed to retrieve data for stock symbol: '})
+  }
 })
 
-app.listen(3000, () => console.log('Server is running!'))
+app.listen(3000, () => console.log('Server is listening on port 3000!'))
