@@ -66,13 +66,32 @@ function logStockData(stockName, data) { //takes in the stock name and its data.
 
   //log each value and corresponding timestamp for given stock
   data.forEach( obj => {
-    console.log("Value: £" + obj.value + ", Timestamp: " + obj.timestamp);
+    let formattedTime = convertTimestamp(obj.timestamp);
+    console.log("Value: £" + obj.value + ", Timestamp[HH:MM:SS]: " + formattedTime);
     let dataPoint = storeDataPointCoords(obj.value, index);
     dataPoints.push(dataPoint);
     index ++;
   })
 
   return dataPoints;
+}
+
+function convertTimestamp(timestamp) {
+  let unix_timestamp = timestamp;
+
+  // convert from seconds to milliseconds
+  var date = new Date(unix_timestamp);
+
+  var hours = date.getHours();
+
+  var minutes = "0" + date.getMinutes();
+
+  var seconds = "0" + date.getSeconds();
+
+  // formatted time is 00:00:00
+  var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+  return formattedTime;
 }
 
 function storeDataPointCoords(value, value_index) { //takes in a specific value of a stock and returns x and y coordinates for that value in a list
@@ -98,6 +117,7 @@ function hideSpinner() {
 
 function labelAxes() { //labels the axes of the chart
   let chart_x_left = 50;
+  let chart_x_right = 950;
   let chart_y_bottom = 550;
   let chart_y_top = 50;
 
@@ -108,7 +128,10 @@ function labelAxes() { //labels the axes of the chart
 
   ctx.font = '16px Courier';
   ctx.fillText('100', chart_x_left - 34, chart_y_top + 20);
-  ctx.fillText('0', chart_x_left - 16, chart_y_bottom + 5)
+  ctx.fillText('0', chart_x_left - 16, chart_y_bottom + 5);
+
+  ctx.fillText('-9hrs', chart_x_left, chart_y_bottom + 20);
+  ctx.fillText('now', chart_x_right - 50, chart_y_bottom + 20);
 }
 
 function showLegend() { //changes display of the chart legend from none to flex (aimed for after data has been loaded)
